@@ -17,9 +17,9 @@
 			}]
 		},
 		"strings": {
-			"name": "string.quoted.double.reportingformula",
-			"begin": "\"",
-			"end": "\"",
+			"name": "string.quoted.single.reportingformula",
+			"begin": "'",
+			"end": "'",
 			"patterns": [
 				{
 					"name": "constant.character.escape.reportingformula",

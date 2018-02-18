@@ -13,7 +13,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.reportingformula",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "(?i)\\b(if|switch|or|and|not)\\b"
 			}]
 		},
 		"strings": {

@@ -20,7 +20,6 @@
         "Languages"
     ],
     "activationEvents": [
-        "onCommand:extension.formatFormulaForEditing",
         "onCommand:extension.exportFormulaToClipboard",
         "onLanguage:reportingformula"
     ],
@@ -48,10 +47,6 @@
         ],
         "commands": [
             {
-                "command": "extension.formatForEditting",
-                "title": "Format Reporting Formula for Editing"
-            },
-            {
                 "command": "extension.exportToClipboard",
                 "title": "Export Reporting Formula to Clipboard"
             }
@@ -67,5 +62,8 @@
         "eslint": "^4.11.0",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "clipboardy": "^1.2.2"
     }
 }

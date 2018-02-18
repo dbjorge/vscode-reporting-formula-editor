@@ -5,20 +5,78 @@
 // Please refer to their documentation on https://mochajs.org/ for help.
 //
 
-// The module 'assert' provides assertion methods from node
 const assert = require('assert');
+const extension = require('../extension');
 
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
-const vscode = require('vscode');
-const myExtension = require('../extension');
+suite("sanitizeFormulaForExport tests", function() {
+    test("Should not change already-sanitized input", function() {
+        let preSanitizedInput = "=CheckContains({Foo.Bar Baz},'qux')";
+        assert.equal(preSanitizedInput, extension.sanitizeFormulaForExport(preSanitizedInput));
+    });
 
-// Defines a Mocha test suite to group tests of similar kind together
-suite("Extension Tests", function() {
+    test("Should strip newlines", function() {
+        assert.equal(
+            extension.sanitizeFormulaForExport(`
+=CheckContains(
+    {Foo.Bar Baz},
+    'qux'
+ )
+`),
+        " =CheckContains(     {Foo.Bar Baz},     'qux'  ) ");
+    });
 
-    // Defines a Mocha unit test
-    test("Something 1", function() {
-        assert.equal(-1, [1, 2, 3].indexOf(5));
-        assert.equal(-1, [1, 2, 3].indexOf(0));
+    test("Should strip tabs", function() {
+        assert.equal(
+            extension.sanitizeFormulaForExport(`
+=CheckContains(
+	{Foo.Bar Baz},
+	'qux'
+ )
+`),
+            " =CheckContains(     {Foo.Bar Baz},     'qux'  ) ");
+    });
+
+    test("Should strip line comments on their own line", function() {
+        assert.equal(
+            extension.sanitizeFormulaForExport(`
+=CheckContains(
+// standalone line comment
+    {Foo.Bar Baz},
+    'qux'
+ )
+`),
+            " =CheckContains(      {Foo.Bar Baz},     'qux'  ) ");
+    });
+
+    test("Should strip line comments at ends of line", function() {
+        assert.equal(
+            extension.sanitizeFormulaForExport(`
+=CheckContains( // ending line comment
+    {Foo.Bar Baz},
+    'qux' // ending line comment
+ )
+`),
+            " =CheckContains(      {Foo.Bar Baz},     'qux'   ) ");
+    });
+
+    test("Should strip block comments", function() {
+        assert.equal(
+            "=CheckContains({Foo.Bar Baz}, 'qux')",
+            extension.sanitizeFormulaForExport(
+                "=CheckContains({Foo.Bar Baz},/* block comment */ 'qux')"));
+    });
+
+    test("Should strip multiline block comments", function() {
+        assert.equal(
+            extension.sanitizeFormulaForExport(`
+=CheckContains( /*
+multiline
+block // confusing line comment
+comment /* confusing extra opener
+  */{Foo.Bar Baz},
+    'qux'
+ )
+`),
+            " =CheckContains( {Foo.Bar Baz},     'qux'  ) ");
     });
 });

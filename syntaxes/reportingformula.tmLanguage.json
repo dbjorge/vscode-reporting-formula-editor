@@ -1,15 +1,26 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Reporting Formula",
+	"scopeName": "source.reportingformula",
+	"foldingStartMarker": "\\(\\s*$",
+    "foldingStopMarker": "^\\s*\\)",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+		{ "include": "#keywords" },
+		{ "include": "#strings" },
+		{ "include": "#variables" }
 	],
 	"repository": {
+		"variables": {
+			"name": "variable.parameter.reportingformula",
+			"begin": "{",
+			"end": "}",
+			"patterns": [
+				{
+					"name": "keyword.operator.reportingformula",
+					"match": "\\."
+				}
+			]
+		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.reportingformula",
@@ -27,6 +38,5 @@
 				}
 			]
 		}
-	},
-	"scopeName": "source.reportingformula"
+	}
 }

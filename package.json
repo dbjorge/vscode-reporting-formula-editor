@@ -2,7 +2,7 @@
     "name": "reporting-formula-editor",
     "displayName": "Reporting Formula Editor",
     "description": "Language support for Exago-style formulas",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "danbjorge",
     "icon": "assets/extension-logo-128x128.png",
     "engines": {

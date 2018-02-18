@@ -1,0 +1,26 @@
+{
+    "name": "reporting-formula-editor",
+    "displayName": "Reporting Formula Editor",
+    "description": "Language support for Exago-style formulas",
+    "version": "0.0.1",
+    "publisher": "danbjorge",
+    "engines": {
+        "vscode": "^1.20.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "reportingformula",
+            "aliases": ["Reporting Formula", "reportingformula"],
+            "extensions": [".rptf"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "reportingformula",
+            "scopeName": "source.reportingformula",
+            "path": "./syntaxes/reportingformula.tmLanguage.json"
+        }]
+    }
+}

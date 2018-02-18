@@ -26,17 +26,26 @@
     ],
     "main": "./extension",
     "contributes": {
-        "languages": [{
-            "id": "reportingformula",
-            "aliases": ["Reporting Formula", "reportingformula"],
-            "extensions": [".rptf"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "reportingformula",
-            "scopeName": "source.reportingformula",
-            "path": "./syntaxes/reportingformula.tmLanguage.json"
-        }],
+        "languages": [
+            {
+                "id": "reportingformula",
+                "aliases": [
+                    "Reporting Formula",
+                    "reportingformula"
+                ],
+                "extensions": [
+                    ".rptf"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "reportingformula",
+                "scopeName": "source.reportingformula",
+                "path": "./syntaxes/reportingformula.tmLanguage.json"
+            }
+        ],
         "commands": [
             {
                 "command": "extension.formatForEditting",

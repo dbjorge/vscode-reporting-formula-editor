@@ -7,7 +7,8 @@
 	"patterns": [
 		{ "include": "#keywords" },
 		{ "include": "#strings" },
-		{ "include": "#variables" }
+		{ "include": "#variables" },
+		{ "include": "#builtinfunctions" }
 	],
 	"repository": {
 		"variables": {
@@ -22,10 +23,66 @@
 			]
 		},
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.reportingformula",
-				"match": "(?i)\\b(if|switch|or|and|not)\\b"
-			}]
+			"comment": "There aren't really non-operator keywords, but syntax coloring is nicer if we pretend",
+			"patterns": [
+				{
+					"name": "keyword.operator.reportingformula",
+					"match": "\\b([&+\\-*/<>=]|>=|<=)\\b"
+				},
+				{
+					"name": "keyword.control.reportingformula",
+					"match": "(?i)\\b(if|switch)\\b"
+				},
+				{
+					"comment": "True() and False() are functions, not constants",
+					"name": "keyword.other.reportingformula",
+					"match": "(?i)\\b(or|and|not|true|false)\\b"
+				}
+			]
+		},
+		"builtinfunctions": {
+			"patterns": [
+				{
+					"comment": "*** Aggregate ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(AggAvg|AggCount|AggDistinctCount|AggMax|AggMin|AggSum|RunningSum)\\b"
+				},
+				{
+					"comment": "*** Date ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(Date|DateAdd|DateDiff|DateValue|Day|Days360|Firstdayofcurrentmonth|FirstDayofLastMonth|GlobalDateFormat|GlobalDateTimeFormat|Hour|Lastdayofcurrentmonth|LastDayofLastMonth|Minute|Month|Now|Second|Time|TimeFormat1|TimeValue|Today|Year)\\b"
+				},
+				{
+					"comment": "*** Financial ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(Db|Ddb|Fv|IntRate|Ipmt|Nper|Npv|Pmt|Ppmt|Pv|Rate|Sln|Syd)\\b"
+				},
+				{
+					"comment": "*** Database and Data Type ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(DataRowCount|DbNull|IsBlank|IsError|IsEven|IsLogical|IsNoDataQualified|IsNonText|IsNull|IsNumber|IsOdd|IsText|Null|Type)\\b"
+				},
+				{
+					"comment": "*** Arithmetic and Geometric ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(Abs|ACos|ACosh|ASin|ASinh|ATan|ATan2|ATanh|Ceiling|Cos|Cosh|Even|Exp|Fixed|Floor|GlobalNumericFormat|Int|Ln|Log|Log10|Mod|Odd|Pi|Power|Product|Quotient|Rand|Round|Sin|Sinh|Sqrt|Tan|Tanh|Trunc)\\b"
+				},
+				{
+					"comment": "*** String ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(Concatenate|Left|Len|Lower|Mid|NewLine|Replace|Right|Trim|Upper|Value)\\b"
+				},
+				{
+					"comment": "*** Formatting ***",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(Bold|FormatPhone|Italic|Underline)\\b"
+				},
+				{
+					"comment": "*** Other *** (I think these are provided by PetPoint, my motivating case)",
+					"name": "support.function.reportingformula",
+					"match": "(?i)\\b(AggConcatenate|CalculateMedian|CalculateMode|CheckContains|ExcelFormula|FilterValue|GetMostRecentVaccinationDate|HTMLDecode|Hyperlink|LineNumber|LoadImage|SetMostRecentVaccinationDate|StripHtmlTags)\\b"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.single.reportingformula",

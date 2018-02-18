@@ -16,8 +16,6 @@ function sanitizeFormulaForExport(rawContent) {
 exports.sanitizeFormulaForExport = sanitizeFormulaForExport;
 
 function activate(context) {
-    console.log('vscode-reporting-formula-editor is now active!');
-
     let formatForEdittingDisposable = vscode.commands.registerCommand('extension.formatForEditting', function () {
         vscode.window.showErrorMessage('Not implemented yet!');
     });

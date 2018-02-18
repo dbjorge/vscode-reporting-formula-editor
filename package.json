@@ -17,6 +17,7 @@
     "categories": [
         "Languages"
     ],
+    "icon": "assets/extension-logo-128x128.png",
     "contributes": {
         "languages": [{
             "id": "reportingformula",

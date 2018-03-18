@@ -5,12 +5,27 @@
 	"foldingStartMarker": "\\(\\s*$",
     "foldingStopMarker": "^\\s*\\)",
 	"patterns": [
+		{ "include": "#comments" },
 		{ "include": "#keywords" },
 		{ "include": "#strings" },
 		{ "include": "#variables" },
 		{ "include": "#builtinfunctions" }
 	],
 	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.reportingformula",
+					"begin": "\\/\\/",
+					"end": "$"
+				},
+				{
+					"name": "comment.block.reportingformula",
+					"begin": "\\/\\*",
+					"end": "\\*\\/"
+				}
+			]
+		},
 		"variables": {
 			"name": "variable.parameter.reportingformula",
 			"begin": "{",
@@ -34,9 +49,9 @@
 					"match": "(?i)\\b(if|switch)\\b"
 				},
 				{
-					"comment": "True() and False() are functions, not constants",
+					"comment": "True()/False()/CellValue() are functions, not constants",
 					"name": "keyword.other.reportingformula",
-					"match": "(?i)\\b(or|and|not|true|false)\\b"
+					"match": "(?i)\\b(or|and|not|true|false|cellvalue)\\b"
 				}
 			]
 		},

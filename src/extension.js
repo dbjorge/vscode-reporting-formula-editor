@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const clipboardy = require('clipboardy');
+const formatter = require('./formatter');
 
 function getTextToExport() {
     // Might be nice for this to pull just the selected text if some is selected
@@ -16,16 +17,17 @@ function sanitizeFormulaForExport(rawContent) {
 exports.sanitizeFormulaForExport = sanitizeFormulaForExport;
 
 function activate(context) {
-    let formatForEdittingDisposable = vscode.commands.registerCommand('extension.formatForEditting', function () {
-        vscode.window.showErrorMessage('Not implemented yet!');
-    });
-    context.subscriptions.push(formatForEdittingDisposable);
+    let formattingProviderDisposable = vscode.languages.registerDocumentFormattingEditProvider(
+        { language: 'reportingformula' },
+        formatter);
+    context.subscriptions.push(formattingProviderDisposable);
 
     let exportToClipboardDisposable = vscode.commands.registerCommand('extension.exportToClipboard', function () {
         let originalContent = getTextToExport();
         let sanitizedContent = sanitizeFormulaForExport(originalContent);
         clipboardy.writeSync(sanitizedContent);
-        vscode.window.showInformationMessage('Exported formula to clipboard (without comments/newlines)');
+        
+        vscode.window.setStatusBarMessage('Exported formula to clipboard (without comments/newlines)', 5000);
     });
     context.subscriptions.push(exportToClipboardDisposable);
 }

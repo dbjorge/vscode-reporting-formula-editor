@@ -6,7 +6,7 @@
 //
 
 const assert = require('assert');
-const extension = require('../extension');
+const extension = require('../src/extension');
 
 suite("sanitizeFormulaForExport tests", function() {
     test("Should not change already-sanitized input", function() {

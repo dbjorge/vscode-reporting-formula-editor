@@ -17,13 +17,14 @@
         "url": "https://github.com/dbjorge/vscode-reporting-formula-editor/issues"
     },
     "categories": [
-        "Languages"
+        "Languages",
+        "Formatters"
     ],
     "activationEvents": [
         "onCommand:extension.exportFormulaToClipboard",
         "onLanguage:reportingformula"
     ],
-    "main": "./extension",
+    "main": "./src/extension",
     "contributes": {
         "languages": [
             {
